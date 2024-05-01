@@ -232,6 +232,14 @@
     left: 0;
 }
 
+.inner:has(.startpage) .manager {
+    margin-top: var(--themeSpacing) !important;
+    margin-left: var(--themeSpacing) !important;
+    margin-bottom: var(--themeSpacing) !important;
+    border-radius: var(--themeRadius) !important;
+    overflow: hidden;
+}
+
 /* footer */
 
 footer {
@@ -266,6 +274,7 @@ button.vivaldi {
 #mail_view {
     background-color: var(--colorAccentBg) !important;
     gap: var(--themeSpacing) !important;
+    padding-right: var(--themeSpacing) !important;
 }
 
 #mail_search {
