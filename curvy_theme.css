@@ -32,6 +32,7 @@
 
 #tabs-tabbar-container {
     border-bottom-width: 0px !important;
+    background-color: var(--colorBgAlphaBlur) !important;
 }
 
 .tab:not(.active) {
@@ -87,11 +88,20 @@
 
 .UrlBar-AddressField {
     background-color: var(--colorAccentBgFaded) !important;
+    color: var(--colorAccentFg) !important;
     border: none !important;
 }
 
 .UrlBar-AddressField:focus-within {
     outline-offset: unset !important;
+}
+
+.pageload-indicator {
+    opacity: 0 !important;
+}
+
+.pageload-ticker {
+    color: var(--colorAccentFgFaded) !important;
 }
 
 /* inner */
@@ -101,11 +111,11 @@
     transition: background-color var(--themeTransition), border-color var(--themeTransition), color var(--themeTransition) !important;
 }
 
-#browser:not(.fullscreen) #main.left .inner:not(:has(.startpage)) {
+#browser:not(.fullscreen) #main.left .inner:not(:has(.webpageview.active .startpage)) {
     padding-right: var(--themeSpacing) !important;
 }
 
-#browser:not(.fullscreen) #main.right .inner:not(:has(.startpage)) {
+#browser:not(.fullscreen) #main.right .inner:not(:has(.webpageview.active .startpage)) {
     padding-left: var(--themeSpacing) !important;
 }
 
@@ -113,7 +123,7 @@
     padding-top: var(--themeSpacing) !important;
 }
 
-.inner:has(.startpage) {
+.inner:has(.webpageview.active .startpage) {
     background-color: unset !important;
 }
 
@@ -123,12 +133,13 @@
     background-color: var(--colorAccentBg) !important;
     color: var(--colorAccentFg) !important;
     border: none !important;
-    transition: background-color var(--themeTransition), border-color var(--themeTransition), color var(--themeTransition) !important;
+    transition: background-color var(--themeTransition), border-color var(--themeTransition), color var(--themeTransition), width var(--themeTransition) !important;
 }
 
 .panel-group {
     border-width: 0px !important;
     border-radius: var(--themeRadius) !important;
+    background-color: var(--colorBgAlphaBlur) !important;
 }
 
 #panels-container:not(.overlay) .panel-group,
@@ -145,7 +156,7 @@
     color: var(--colorFg) !important;
 }
 
-#panels-container:after {
+#panels-container.left:after {
     content: '' !important;
     position: absolute !important;
     width: var(--themeRadius) !important;
@@ -176,17 +187,16 @@
     margin-right: var(--themeSpacing);
 }
 
-#panels .button-toolbar {
+#panels #switch .button-toolbar {
     transition: none !important;
-    border-radius: var(--themeRadiusHalf) !important;
 }
 
-#panels .button-toolbar:not(.toolbar-spacer-flexible):hover {
+#panels #switch .button-toolbar:not(.toolbar-spacer-flexible):hover {
     background-color: var(--colorAccentFg) !important;
     color: var(--colorAccentBg) !important;
 }
 
-#panels .button-toolbar.active {
+#panels #switch .button-toolbar.active {
     background-color: var(--colorAccentFg) !important;
     color: var(--colorAccentBg) !important;
 }
@@ -201,18 +211,19 @@
 
 /* webpage */
 
-#webpage-stack {
+.webpageview.active {
     border-radius: var(--themeRadius) !important;
+    overflow: hidden !important;
 }
 
-#browser.fullscreen .inner #webpage-stack,
-.inner:has(.startpage) #webpage-stack {
+#browser.fullscreen .webpageview.active,
+.webpageview.active:has(.startpage) {
     border-radius: 0px !important;
 }
 
 /* startpage */
 
-.inner:has(.startpage) .startpage-navigation {
+.webpageview.active:has(.startpage) .startpage-navigation {
     background-color: var(--colorAccentBg) !important;
     border-bottom-right-radius: var(--themeRadius) !important;
     box-shadow: unset !important;
@@ -220,7 +231,11 @@
     padding-bottom: var(--themeSpacing) !important;
 }
 
-.inner:has(.startpage) .startpage-navigation:after {
+#browser:has(#panels-container.right) .webpageview.active:has(.startpage) .startpage-navigation {
+    border-bottom-right-radius: 0px !important;
+}
+
+.webpageview.active:has(.startpage) .startpage-navigation:after {
     content: '';
     position: absolute;
     width: var(--themeRadius);
@@ -232,7 +247,7 @@
     left: 0;
 }
 
-.inner:has(.startpage) .manager {
+.webpageview.active:has(.startpage) .manager {
     margin-top: var(--themeSpacing) !important;
     margin-left: var(--themeSpacing) !important;
     margin-bottom: var(--themeSpacing) !important;
@@ -255,7 +270,7 @@ footer::after {
     background-color: transparent !important;
 }
 
-#browser:has(.startpage) footer {
+#browser:has(.webpageview.active .startpage) footer {
     border-top-right-radius: var(--themeRadius) !important;
 }
 
