@@ -127,6 +127,13 @@
     background-color: unset !important;
 }
 
+#browser:not(:has(footer div)) .inner {
+    border-bottom-left-radius: var(--themeRadius) !important;
+    border-bottom-right-radius: var(--themeRadius) !important;
+    overflow: hidden !important;
+    padding-bottom: var(--themeSpacing) !important;
+}
+
 /* panels */
 
 #panels-container {
@@ -207,6 +214,11 @@
     border-width: 0px !important;
     display: flex;
     justify-content: center;
+}
+
+#switch {
+    border-radius: var(--themeRadius) !important;
+    backdrop-filter: unset !important;
 }
 
 /* webpage */
